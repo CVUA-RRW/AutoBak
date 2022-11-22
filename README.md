@@ -5,6 +5,7 @@ Goal of this repository is to provided an automated workflow
 for Bacteria characterisation.
 
 ## Requirements
+
 ### Inputs
 * a sample sheet linking sample name to Fastq files
 * a metadata sheet containing sample information from LIMS (form to define)

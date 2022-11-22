@@ -1,0 +1,233 @@
+{
+    "date":"2022-11-17",
+    "version":1,
+    "source":"ASU_entwurf",
+    "species":[
+        "Campylobacter spp",
+        "Listeria monocytogenes",
+        "Escherichia coli",
+        "Salmonella enterica"
+    ],
+    "aquamis_names":
+        {
+            "Assembly coverage": "Coverage_Depth",
+            "Q30": "Q30_Base_Fraction",
+            "Contamination": "Contamination_Status",
+            "Assembly length": "Total_Length",
+            "Number of contigs": "n_Contigs_Length_0",
+            "Predicted Genus": "Genus", 
+            "Median GC (%)": "GC"
+        },
+    "Campylobacter ssp":[
+        {
+            "name":"Assembly coverage",
+            "type":"range",
+            "value":[
+                20,
+                200
+            ],
+            "category":"obligatory"
+        },
+        {
+            "name":"Q30",
+            "type":"threshold",
+            "value":0.80,
+            "category":"obligatory"
+        },
+        {
+            "name":"Contamination",
+            "type":"categorical",
+            "value":"False",
+            "category":"obligatory"
+        },
+        {
+            "name":"Assembly length",
+            "type":"range",
+            "value":[
+                1500000,
+                1900000
+            ],
+            "category":"obligatory"
+        },
+        {
+            "name":"Number of contigs",
+            "type":"maximum",
+            "value":300,
+            "category":"optional"
+        },
+        {
+            "name":"Predicted Genus",
+            "type":"categorical",
+            "value":"Campylobacter",
+            "category":"obligatory"
+        },
+        {
+            "name":"Median GC (%)",
+            "type":"range",
+            "value":[
+                30,
+                31.7
+            ],
+            "category":"optional"
+        }
+    ],
+    "Listeria monocytogenes":[
+        {
+            "name":"Assembly coverage",
+            "type":"range",
+            "value":[
+                20,
+                200
+            ],
+            "category":"obligatory"
+        },
+        {
+            "name":"Q30",
+            "type":"threshold",
+            "value":0.80,
+            "category":"obligatory"
+        },
+        {
+            "name":"Contamination",
+            "type":"categorical",
+            "value":"False",
+            "category":"obligatory"
+        },
+        {
+            "name":"Assembly length",
+            "type":"range",
+            "value":[
+                2700000,
+                3200000
+            ],
+            "category":"obligatory"
+        },
+        {
+            "name":"Number of contigs",
+            "type":"maximum",
+            "value":300,
+            "category":"optional"
+        },
+        {
+            "name":"Predicted Genus",
+            "type":"categorical",
+            "value":"Listeria",
+            "category":"obligatory"
+        },
+        {
+            "name":"Median GC (%)",
+            "type":"range",
+            "value":[
+                37.5,
+                38.3
+            ],
+            "category":"optional"
+        }
+    ],
+    "Escherichia coli":[
+        {
+            "name":"Assembly coverage",
+            "type":"range",
+            "value":[
+                40,
+                200
+            ],
+            "category":"obligatory"
+        },
+        {
+            "name":"Q30",
+            "type":"threshold",
+            "value":0.80,
+            "category":"obligatory"
+        },
+        {
+            "name":"Contamination",
+            "type":"categorical",
+            "value":"False",
+            "category":"obligatory"
+        },
+        {
+            "name":"Assembly length",
+            "type":"range",
+            "value":[
+                4500000,
+                5900000
+            ],
+            "category":"obligatory"
+        },
+        {
+            "name":"Number of contigs",
+            "type":"maximum",
+            "value":500,
+            "category":"optional"
+        },
+        {
+            "name":"Predicted Genus",
+            "type":"categorical",
+            "value":"Escherichia",
+            "category":"obligatory"
+        },
+        {
+            "name":"Median GC (%)",
+            "type":"range",
+            "value":[
+                50.2,
+                51.0
+            ],
+            "category":"optional"
+        }
+    ],
+    "Salmonella enterica":[
+        {
+            "name":"Assembly coverage",
+            "type":"range",
+            "value":[
+                30,
+                200
+            ],
+            "category":"obligatory"
+        },
+        {
+            "name":"Q30",
+            "type":"threshold",
+            "value":0.80,
+            "category":"obligatory"
+        },
+        {
+            "name":"Contamination",
+            "type":"categorical",
+            "value":"False",
+            "category":"obligatory"
+        },
+        {
+            "name":"Assembly length",
+            "type":"range",
+            "value":[
+                4300000,
+                5200000
+            ],
+            "category":"obligatory"
+        },
+        {
+            "name":"Number of contigs",
+            "type":"maximum",
+            "value":300,
+            "category":"optional"
+        },
+        {
+            "name":"Predicted Genus",
+            "type":"categorical",
+            "value":"Salmonella",
+            "category":"obligatory"
+        },
+        {
+            "name":"Median GC (%)",
+            "type":"range",
+            "value":[
+                51.7,
+                52.5
+            ],
+            "category":"optional"
+        }
+    ]
+}

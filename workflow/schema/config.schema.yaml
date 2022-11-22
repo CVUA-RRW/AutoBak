@@ -1,0 +1,17 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+
+description: Config File Schema
+
+properties:
+  
+  workdir:
+    type: string
+    description: Output directory
+  
+  threads:
+    type: integer
+    description: Maximum number of threads to use simultaneously
+  
+  required:
+    - workdir
+    - threads

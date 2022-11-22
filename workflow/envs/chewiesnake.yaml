@@ -1,0 +1,7 @@
+name: chewiesnake
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - chewiesnake=3.0.0

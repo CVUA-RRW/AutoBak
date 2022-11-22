@@ -1,0 +1,23 @@
+
+# Path to working directory
+workdir: "/home/debian/NGS/dev/autobak_test/res"
+# Path to folder with fastq files
+fastq_folder: "/home/debian/NGS/dev/autobak_test/fastq"
+# Path to metadata
+metadata: "/home/debian/NGS/dev/autobak_test/data/metadata.tsv"
+
+# Path to conda envs folder
+conda_prefix: "~/anaconda3/envs/"
+# Number of threads dedicated to execution
+threads: 8
+
+# AQUAMIS config
+min_trim_length: 75
+mash_kmer: 21
+mash_sketch: 1000
+bracken_read_length: 150
+shovill_ram: 32
+shovill_depth: 100
+
+# AutoQC config
+keep_warn: True
