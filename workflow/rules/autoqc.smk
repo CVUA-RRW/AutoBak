@@ -46,12 +46,13 @@ rule assembly_sample_sheet:
         """
 
 
-rule QC_filter_sample_sheet:
+checkpoint QC_filter_sample_sheet:
     input:
         autoqc = "AutoQC/autoqc_check.tsv",
         assemblies = "sample_sheets/all_assemblies.tsv",
+        metadata = "Metadata/metadata.tsv",
     output:
-        ssheet = "samples_sheets/QCpass_assemblies.tsv",
+        outdir = directory("samples_sheets/QCpass"),
     params:
         keep_warn = config['keep_warn'],
     conda:

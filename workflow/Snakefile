@@ -34,7 +34,13 @@ rule all:
 include: "rules/metadata.smk"
 include: "rules/aquamis.smk"
 include: "rules/autoqc.smk"
-include: "rules/chewiesnake.smk"
+if config["independent"]:
+    include: "rules/chewiesnake_independent.smk"
+elif config["integrate"]:
+    include: "rules/chewisnake_integrate.smk"
+else:
+    include: "rules/chewiesnake_compare.smk"
+
 
 
 # Workflow --------------------------------------------------------------------

@@ -15,7 +15,8 @@ validate(config, schema="../schema/config.schema.yaml")
 # Validating metadata
 
 
-# Loading and validating samples ---------------------
+# Loading and validating cgmlst table -----------------
+# TODO
 
 
 # General puprose functions --------------------------

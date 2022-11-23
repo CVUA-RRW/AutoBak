@@ -33,6 +33,7 @@ set -Eeu
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+# retrieve databases and extend envs to use in aquamis
 
 msg() {
   echo >&2 -e "${1-}"

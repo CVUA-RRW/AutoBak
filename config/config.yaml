@@ -1,5 +1,3 @@
-
-# Path to working directory
 workdir: "/home/debian/NGS/dev/autobak_test/res"
 # Path to folder with fastq files
 fastq_folder: "/home/debian/NGS/dev/autobak_test/fastq"
@@ -21,3 +19,12 @@ shovill_depth: 100
 
 # AutoQC config
 keep_warn: True
+
+# Path to table with links to schemata and local databses for each species
+cgMLST_paths: 
+# True or False, whether to integrate the samples to the local databases if passing all filters
+integrate: False
+# True or False, whether the analysis should run independently of the cgMLST databases
+# If False the cgMLST results will be in workdir, not in the cgMLST path 
+independent: False
+

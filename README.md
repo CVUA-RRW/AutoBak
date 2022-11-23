@@ -22,7 +22,7 @@ for Bacteria characterisation.
 
 ### Other reqs
 * must be possible to not include samples in databases (comparison mode)
-* must be possible to analyze a dataset independently of existing , e.g. for ring trials (exclude mode)
+* must be possible to analyze a dataset independently of existing , e.g. for ring trials or validations(independant mode)
 
 ## Workflow 
 * sanity check inputs
