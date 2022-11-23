@@ -52,6 +52,9 @@ def main(metadata, aquamis, thresholds, report):
         # retrieve expected species
         sample_id = sample[1]['Sample_Name']
         expect = meta.loc[meta['sample'] == sample_id, 'species'].values[0]
+        # Check if species is present in QC check
+        if expect not in thr['species']:
+            raise KeyError(f"No acceptance criteria for {expect} in {sample_id}")
         # Check all QC criteria
         qc_params = thr[expect]
         checks = {entry['name']: check_criteria(entry, sample[1], thr['aquamis_names']) for entry in qc_params}
