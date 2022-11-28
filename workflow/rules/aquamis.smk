@@ -62,7 +62,6 @@ rule run_aquamis:
             --shovill_ram {params.shovill_ram} \
             --shovill_depth {params.shovill_depth} \
             --assembler "spades" \
-            --condaprefix {params.conda_prefix} \
             --threads {threads} \
             --remove_temp \
             --fix_fails 

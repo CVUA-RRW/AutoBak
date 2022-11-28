@@ -1,10 +1,9 @@
 
-rule precluster_lis:
+rule merge_lis:
     input:
         ssheet = "sample_sheets/QCpass/listeria.tsv", # Species spec
     output:
-        outdir = directory("cgMLST_Listeria"), # Species spec
-        report = touch("cgMLST_Listeria/reports/cgmlst_report.html"), # Species spec
+        flag = touch("Listeria_flag"), 
     params:
         schema = config['lis_schema'], # Species spec
         prodigal = config['lis_prodigal'], # Species spec
@@ -18,10 +17,11 @@ rule precluster_lis:
         remove_frameshifts = "--remove_frameshift" if config['remove_frameshifts'] else "",
         allele_length_threshold = config['allele_length_threshold'],
         frameshift_mode = config['frameshift_mode'],
+        merge_db = config['lis_cgMLST'], # Species spec
     threads:
         config['threads'],
     log:
-        "logs/chewie_run_listeria.log"
+        "logs/chewie_merge_listeria.log"
     conda:
         "../envs/chewiesnake.yaml"
     shell:
@@ -32,7 +32,7 @@ rule precluster_lis:
         chewiesnake \
             --threads {threads} \
             --sample_list {input.ssheet} \
-            --working_directory {output.outdir} \
+            --working_directory {params.merge_db} \
             --scheme {params.schema} \
             --prodigal {params.prodigal} \
             --bsr_threshold {params.bsr_threshold} \
@@ -49,12 +49,11 @@ rule precluster_lis:
         """
 
 
-rule precluster_salm:
+rule merge_salm:
     input:
         ssheet = "sample_sheets/QCpass/salmonella.tsv", # Species spec
     output:
-        outdir = directory("cgMLST_Salmonella"), # Species spec
-        report = touch("cgMLST_Salmonella/reports/cgmlst_report.html"), # Species spec
+        flag = touch("Salmonella_flag"), 
     params:
         schema = config['salm_schema'], # Species spec
         prodigal = config['salm_prodigal'], # Species spec
@@ -68,10 +67,11 @@ rule precluster_salm:
         remove_frameshifts = "--remove_frameshift" if config['remove_frameshifts'] else "",
         allele_length_threshold = config['allele_length_threshold'],
         frameshift_mode = config['frameshift_mode'],
+        merge_db = config['salm_cgMLST'], # Species spec
     threads:
         config['threads'],
     log:
-        "logs/chewie_run_salmonella.log"
+        "logs/chewie_merge_salmonella.log"
     conda:
         "../envs/chewiesnake.yaml"
     shell:
@@ -82,7 +82,7 @@ rule precluster_salm:
         chewiesnake \
             --threads {threads} \
             --sample_list {input.ssheet} \
-            --working_directory {output.outdir} \
+            --working_directory {params.merge_db} \
             --scheme {params.schema} \
             --prodigal {params.prodigal} \
             --bsr_threshold {params.bsr_threshold} \
@@ -99,12 +99,11 @@ rule precluster_salm:
         """
 
 
-rule precluster_campy:
+rule merge_campy:
     input:
         ssheet = "sample_sheets/QCpass/campylobacter.tsv", # Species spec
     output:
-        outdir = directory("cgMLST_Campylobacter"), # Species spec
-        report = touch("cgMLST_Campylobacter/reports/cgmlst_report.html"), # Species spec
+        flag = touch("Campylobacter_flag"), 
     params:
         schema = config['campy_schema'], # Species spec
         prodigal = config['campy_prodigal'], # Species spec
@@ -118,10 +117,13 @@ rule precluster_campy:
         remove_frameshifts = "--remove_frameshift" if config['remove_frameshifts'] else "",
         allele_length_threshold = config['allele_length_threshold'],
         frameshift_mode = config['frameshift_mode'],
+        compare_db = config['campy_cgMLST'], # Species spec
+        joining_threshold = config['joining_threshold'],
+        merge_db = config['campy_cgMLST'], # Species spec
     threads:
         config['threads'],
     log:
-        "logs/chewie_run_campy.log"
+        "logs/chewie_merge_campy.log"
     conda:
         "../envs/chewiesnake.yaml"
     shell:
@@ -132,7 +134,7 @@ rule precluster_campy:
         chewiesnake \
             --threads {threads} \
             --sample_list {input.ssheet} \
-            --working_directory {output.outdir} \
+            --working_directory {params.merge_db} \
             --scheme {params.schema} \
             --prodigal {params.prodigal} \
             --bsr_threshold {params.bsr_threshold} \
@@ -149,12 +151,11 @@ rule precluster_campy:
         """
 
 
-rule precluster_coli:
+rule merge_coli:
     input:
         ssheet = "sample_sheets/QCpass/escherichia.tsv", # Species spec
     output:
-        outdir = directory("cgMLST_Escherichia"), # Species spec
-        report = touch("cgMLST_Escherichia/reports/cgmlst_report.html"), # Species spec
+        flag = touch("Escherichia_flag"), 
     params:
         schema = config['coli_schema'], # Species spec
         prodigal = config['coli_prodigal'], # Species spec
@@ -168,10 +169,13 @@ rule precluster_coli:
         remove_frameshifts = "--remove_frameshift" if config['remove_frameshifts'] else "",
         allele_length_threshold = config['allele_length_threshold'],
         frameshift_mode = config['frameshift_mode'],
+        compare_db = config['coli_cgMLST'], # Species spec
+        joining_threshold = config['joining_threshold'],
+        merge_db = config['coli_cgMLST'], # Species spec
     threads:
         config['threads'],
     log:
-        "logs/chewie_run_coli.log"
+        "logs/chewie_merge_coli.log"
     conda:
         "../envs/chewiesnake.yaml"
     shell:
@@ -182,7 +186,7 @@ rule precluster_coli:
         chewiesnake \
             --threads {threads} \
             --sample_list {input.ssheet} \
-            --working_directory {output.outdir} \
+            --working_directory {params.merge_db} \
             --scheme {params.schema} \
             --prodigal {params.prodigal} \
             --bsr_threshold {params.bsr_threshold} \
@@ -198,3 +202,13 @@ rule precluster_coli:
         fi
         """
 
+rule flag:
+    input:
+        "Escherichia_flag",
+        "Campylobacter_flag",
+        "Listeria_flag",
+        "Salmonella_flag",
+    output:
+        flag = "merge_flag",
+    shell:
+        "touch {output.flag}"

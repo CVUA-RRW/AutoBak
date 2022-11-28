@@ -8,7 +8,7 @@ import os
 import pandas as pd
 
 
-def main(autoqc, assemblies, metadata, keep_warn, outdir):
+def main(autoqc, assemblies, metadata, keep_warn, thresholds, out_lis, out_salm, out_campy, out_ecoli):
     qcvotes = pd.read_csv(autoqc, sep="\t")
     paths = pd.read_csv(assemblies, sep="\t")
     metadata = pd.read_csv(metadata, sep='\t')
@@ -16,11 +16,25 @@ def main(autoqc, assemblies, metadata, keep_warn, outdir):
     if keep_warn:
         filter.append('Warning')
     # Filter by QC criteria
-    keep = qcvotes.loc[qcvotes['QC vote'].isin(filter)]['Sample'].tolist()
+    keep = qcvotes.loc[qcvotes['QC vote'].isin(filter)]
     # Split by species and produce one sample sheet per species
-    for species in metadata['species'].unique():
-        df = paths.loc[(paths['sample'].isin(keep)) & (paths['sample']==species)]
-        df.to_csv(os.path.join(outdir, f"{species}.tsv"), sep="\t", index=False)
+    # Listeria
+    keep_spc = keep.loc[keep['species'] == "Listeria monocytogenes"]['Sample'].tolist()
+    df = paths.loc[(paths['sample'].isin(keep_spc))]
+    df.to_csv(os.path.join(out_lis), sep="\t", index=False)
+    # Salmonella
+    keep_spc = keep.loc[keep['species'] == "Salmonella enterica"]['Sample'].tolist()
+    df = paths.loc[(paths['sample'].isin(keep_spc))]
+    df.to_csv(os.path.join(out_salm), sep="\t", index=False)
+    # Campys
+    keep_spc = keep.loc[keep['species'] == "Campylobacter ssp"]['Sample'].tolist()
+    df = paths.loc[(paths['sample'].isin(keep_spc))]
+    df.to_csv(os.path.join(out_campy), sep="\t", index=False)
+    # Ecoli
+    keep_spc = keep.loc[keep['species'] == "Escherichia coli"]['Sample'].tolist()
+    df = paths.loc[(paths['sample'].isin(keep_spc))]
+    df.to_csv(os.path.join(out_ecoli), sep="\t", index=False)
+
 
 if __name__ == '__main__':
     main(
@@ -28,5 +42,9 @@ if __name__ == '__main__':
         assemblies=snakemake.input['assemblies'],
         metadata=snakemake.input['metadata'],
         keep_warn=snakemake.params['keep_warn'],
-        outdir=snakemake.output['outdir']
+        thresholds=snakemake.params['thresholds'],
+        out_lis=snakemake.output['out_lis'],
+        out_salm=snakemake.output['out_salm'],
+        out_campy=snakemake.output['out_campy'],
+        out_ecoli=snakemake.output['out_ecoli']
     )

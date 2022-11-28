@@ -23,24 +23,26 @@ include: "rules/common.smk"
 
 rule all:
     input:
+        "sample_sheets/aquamis_samples.tsv",
         "AQUAMIS/reports/summary_report.tsv",
         "AutoQC/autoqc_check.tsv",
-        "ChewieSnake/report"
+        "cgMLST_Listeria/reports/cgmlst_report.html",
+        "cgMLST_Salmonella/reports/cgmlst_report.html",
+        "cgMLST_Campylobacter/reports/cgmlst_report.html",
+        "cgMLST_Escherichia/reports/cgmlst_report.html",
+        "merge_flag",
+        "exports/NRL_salm/md5_cvua-rrw.txt",
 
 
 # Includes --------------------------------------------------------------------
 
 
 include: "rules/metadata.smk"
+include: "rules/exports.smk"
 include: "rules/aquamis.smk"
 include: "rules/autoqc.smk"
-if config["independent"]:
-    include: "rules/chewiesnake_independent.smk"
-elif config["integrate"]:
-    include: "rules/chewisnake_integrate.smk"
-else:
-    include: "rules/chewiesnake_compare.smk"
-
+include: "rules/chewiesnake_independent.smk" if config['independent'] else "rules/chewiesnake_compare.smk"
+include: "rules/chewiesnake_integrate.smk" if config["integrate"] else "rules/skip_integrate.smk"
 
 
 # Workflow --------------------------------------------------------------------

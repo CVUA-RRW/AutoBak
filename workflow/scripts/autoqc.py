@@ -67,6 +67,7 @@ def main(metadata, aquamis, thresholds, report):
             vote = "Pass"
         # Create Series
         serie = {"Sample" : sample_id}
+        serie.update({'species': expect})
         serie.update({'QC vote': vote})
         serie.update(checks)
         series.append(pd.Series(serie))

@@ -38,7 +38,7 @@ rule assembly_sample_sheet:
         
         create_sampleSheet.sh \
             --mode assembly \
-            --fastxDir {params.fasta_folder} \
+            --fastxDir $(realpath {params.fasta_folder}) \
             --outDir sample_sheets \
             --force
         
@@ -46,15 +46,19 @@ rule assembly_sample_sheet:
         """
 
 
-checkpoint QC_filter_sample_sheet:
+rule QC_filter_sample_sheet:
     input:
         autoqc = "AutoQC/autoqc_check.tsv",
         assemblies = "sample_sheets/all_assemblies.tsv",
         metadata = "Metadata/metadata.tsv",
     output:
-        outdir = directory("samples_sheets/QCpass"),
+        out_lis = "sample_sheets/QCpass/listeria.tsv",
+        out_salm = "sample_sheets/QCpass/salmonella.tsv",
+        out_campy = "sample_sheets/QCpass/campylobacter.tsv",
+        out_ecoli = "sample_sheets/QCpass/escherichia.tsv",
     params:
         keep_warn = config['keep_warn'],
+        thresholds = os.path.join(workflow.basedir, "..", "data", "AutoQC_thresholds.json"),
     conda:
         "../envs/pandas.yaml"
     message:

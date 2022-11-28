@@ -4,10 +4,16 @@ fastq_folder: "/home/debian/NGS/dev/autobak_test/fastq"
 # Path to metadata
 metadata: "/home/debian/NGS/dev/autobak_test/data/metadata.tsv"
 
+# True or False, whether to integrate the samples to the local databases if passing all filters
+integrate: False
+# True or False, whether the analysis should run independently of the cgMLST databases
+# If False the cgMLST results will be in workdir, not in the cgMLST path 
+independent: True
+
 # Path to conda envs folder
 conda_prefix: "~/anaconda3/envs/"
 # Number of threads dedicated to execution
-threads: 8
+threads: 10
 
 # AQUAMIS config
 min_trim_length: 75
@@ -20,11 +26,38 @@ shovill_depth: 100
 # AutoQC config
 keep_warn: True
 
-# Path to table with links to schemata and local databses for each species
-cgMLST_paths: 
-# True or False, whether to integrate the samples to the local databases if passing all filters
-integrate: False
-# True or False, whether the analysis should run independently of the cgMLST databases
-# If False the cgMLST results will be in workdir, not in the cgMLST path 
-independent: False
+# cgMLST config
+bsr_threshold: 0.6
+size_threshold: 0.2
+max_fraction_missing_loci: 0.05
+distance_method: 3
+clustering_method: "single"
+address_range: "1,5,10,20,50,100,200,1000"
+remove_frameshifts: False
+allele_length_threshold: 0.1
+frameshift_mode: "relative"
+joining_threshold: 30
 
+# Listeria monocytogenes
+lis_schema: /ngs-sw/Databases/cgMLST_BfR/Listeria_cgmlst_Ruppitsch_chewbbaca/cgmlst
+lis_dist: 10
+lis_cgMLST: "/home/debian/NGS/Bakterien/Listeria/Listeria_cgMLST_db"
+lis_prodigal: "/ngs-sw/Databases/cgMLST_BfR/prodigal_training_files/Listeria_monocytogenes.trn"
+
+# Salmonella enterica
+salm_schema: /ngs-sw/Databases/cgMLST_BfR/Salmonella_cgmlst_enterobase/enterobase_senterica_cgmlst
+salm_dist: 10
+salm_cgMLST: "/home/debian/NGS/Bakterien/Salmonella/Salmonella_cgMLST_db"
+salm_prodigal: "/ngs-sw/Databases/cgMLST_BfR/prodigal_training_files/Salmonella_enterica.trn"
+
+# Campylobacter ssp.
+campy_schema: /ngs-sw/Databases/cgMLST_BfR/Campylobacter_cgmlst_chewbbacaonline/cgmlst
+campy_dist: 15
+campy_cgMLST: "/home/debian/NGS/Bakterien/Campys/Campys_cgMLST_db"
+campy_prodigal: "/ngs-sw/Databases/cgMLST_BfR/prodigal_training_files/Campylobacter_jejuni.trn"
+
+# Escherichia coli
+coli_schema: /ngs-sw/Databases/cgMLST_BfR/Ecoli_cgmlst_chewbbacaonline/cgmlst
+coli_dist: 5
+coli_cgMLST: "/home/debian/NGS/Bakterien/Ecoli/Ecoli_cgMLST_db"
+coli_prodigal: "/ngs-sw/Databases/cgMLST_BfR/prodigal_training_files/Escherichia_coli.trn"

@@ -11,6 +11,8 @@ pipe_log = os.path.join(os.getcwd(), "PIPELINE_STATUS")
 
 # Validating config ----------------------------------
 validate(config, schema="../schema/config.schema.yaml")
+if config['independent']:
+    config['integrate'] = False
 
 # Validating metadata
 
@@ -25,6 +27,5 @@ def get_local_time():
 
 
 # Input functions ------------------------------------
-
 
 
