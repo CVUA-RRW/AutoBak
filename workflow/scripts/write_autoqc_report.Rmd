@@ -1,0 +1,80 @@
+---
+title: "AutoQC report"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+theme: default
+---
+
+<style type="text/css">
+.main-container {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+```{r setup, include=FALSE}
+# logging
+log = file(snakemake@log[[1]], open="wt")
+sink(log)
+sink(log, type = "message")
+knitr::opts_chunk$set(out.width = '80%',fig.asp= 0.5,fig.align='center',echo=FALSE, warning=FALSE, message=FALSE)
+options(markdown.HTML.header = system.file("misc", "datatables.html", package = "knitr"))
+library(DT, quietly = T)
+library(tidyverse, quietly = T)
+executor <- Sys.info()["user"]
+```
+
+---
+author: `r paste0(executor)`
+---
+
+```{r init}
+workdir <- snakemake@params[["workdir"]]
+run <- basename(workdir)
+report <- snakemake@input[['autoqc']]
+out <- snakemake@output[['autoqc']]
+
+# Number of samples
+nsamples <- nrow(read.csv(file = report, sep = "\t", check.names=FALSE))
+```
+
+
+# Benchmarking report for run: `r run` {.tabset}
+
+## Overview
+
+* Run name: `r run`
+
+* Number of samples: `r nsamples`
+
+* Run directory: `r workdir`
+
+* Workflow version: `r snakemake@params[["version"]]`
+
+## Report
+
+```{r report}
+data_table <- read.csv(file = report, sep = "\t", check.names=FALSE)
+datatable(data_table, filter = 'top', rownames = FALSE, escape = FALSE,
+		extensions = list("ColReorder" = NULL, "Buttons" = NULL),
+		options = list(	
+					dom = 'BRrltpi',
+					autoWidth=FALSE,
+					scrollX = TRUE,
+					lengthMenu = list(c(10, 50, -1), c('10', '50', 'All')),
+					ColReorder = TRUE,
+					buttons =
+					list(
+						'copy',
+						'print',
+						list(
+						extend = 'collection',
+						buttons = c('csv', 'excel', 'pdf'),
+						text = 'Download'
+						),
+						I('colvis')
+						)
+						))
+```
+
