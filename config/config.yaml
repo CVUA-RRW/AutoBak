@@ -15,6 +15,9 @@ conda_prefix: "~/anaconda3/envs/"
 # Number of threads dedicated to execution
 threads: 10
 
+# Fastq naming format (illumina, ncbi, se, flex, assembly)
+fastq_naming: illumina
+
 # AQUAMIS config - See AQUAMIS documentation
 min_trim_length: 75
 mash_kmer: 21

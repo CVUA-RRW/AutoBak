@@ -4,7 +4,8 @@ rule create_sample_sheet:
     output:
         sample_sheet = "sample_sheets/aquamis_samples.tsv",
     params:
-        fastq_folder = config['fastq_folder']
+        fastq_folder = config['fastq_folder'],
+        format = config['fastq_naming'],
     message:
         "Creating AQUAMIS sample sheet"
     conda:
@@ -16,7 +17,7 @@ rule create_sample_sheet:
         exec 2> {log}
         
         create_sampleSheet.sh \
-            --mode illumina \
+            --mode {params.format} \
             --fastxDir {params.fastq_folder} \
             --outDir {params.fastq_folder}
         
