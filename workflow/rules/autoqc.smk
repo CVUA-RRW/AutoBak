@@ -85,6 +85,6 @@ rule autoqc_report:
     log:
         "logs/write_report.log"
     script:
-        ".../scripts/write_autoqc_report.Rmd"
+        "../scripts/write_autoqc_report.Rmd"
 
     
