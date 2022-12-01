@@ -70,3 +70,21 @@ rule QC_filter_sample_sheet:
         
 
 
+rule autoqc_report:
+    input:
+        autoqc = "AutoQC/autoqc_check.tsv",
+    output:
+        autoqc = "AutoQC/autoqc.html",
+    params:
+        workdir = config['workdir'],
+        version = version,
+    conda:
+        "../envs/aquamis.yaml"
+    message:
+        "Writting AutoQC report"
+    log:
+        "logs/write_report.log"
+    script:
+        ".../scripts/autoqc_report.Rmd"
+
+    
