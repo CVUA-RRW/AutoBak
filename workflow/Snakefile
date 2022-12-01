@@ -30,7 +30,7 @@ rule all:
         "cgMLST_Salmonella/reports/cgmlst_report.html" if config['independent'] else "cgMLST_Salmonella/reports/cgmlst_comparison_report.html",
         "cgMLST_Campylobacter/reports/cgmlst_report.html" if config['independent'] else "cgMLST_Campylobacter/reports/cgmlst_comparison_report.html",
         "cgMLST_Escherichia/reports/cgmlst_report.html" if config['independent'] else "cgMLST_Escherichia/reports/cgmlst_comparison_report.html",
-        "merge_flag",
+        "flags/merge_flag",
         "exports/NRL_salm/md5_cvua-rrw.txt",
 
 
