@@ -1,5 +1,5 @@
 rule flag:
     output:
-        flag = "merge_flag",
+        flag = "flags/merge_flag",
     shell:
         "touch {output.flag}"

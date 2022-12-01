@@ -37,7 +37,6 @@ rule precluster_lis:
             --prodigal {params.prodigal} \
             --bsr_threshold {params.bsr_threshold} \
             --size_threshold {params.size_threshold} \
-            # --max_fraction_missing_loci {params.max_fraction_missing_loci} \
             --distance_method {params.distance_method} \
             --clustering_method {params.clustering_method} \
             --distance_threshold {params.distance_threshold} \
@@ -87,7 +86,6 @@ rule precluster_salm:
             --prodigal {params.prodigal} \
             --bsr_threshold {params.bsr_threshold} \
             --size_threshold {params.size_threshold} \
-            # --max_fraction_missing_loci {params.max_fraction_missing_loci} \
             --distance_method {params.distance_method} \
             --clustering_method {params.clustering_method} \
             --distance_threshold {params.distance_threshold} \
@@ -137,7 +135,6 @@ rule precluster_campy:
             --prodigal {params.prodigal} \
             --bsr_threshold {params.bsr_threshold} \
             --size_threshold {params.size_threshold} \
-            # --max_fraction_missing_loci {params.max_fraction_missing_loci} \
             --distance_method {params.distance_method} \
             --clustering_method {params.clustering_method} \
             --distance_threshold {params.distance_threshold} \
@@ -187,7 +184,6 @@ rule precluster_coli:
             --prodigal {params.prodigal} \
             --bsr_threshold {params.bsr_threshold} \
             --size_threshold {params.size_threshold} \
-            # --max_fraction_missing_loci {params.max_fraction_missing_loci} \
             --distance_method {params.distance_method} \
             --clustering_method {params.clustering_method} \
             --distance_threshold {params.distance_threshold} \
