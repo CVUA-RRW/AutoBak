@@ -10,13 +10,15 @@
     ],
     "aquamis_names":
         {
-            "Assembly coverage": "Coverage_Depth",
-            "Q30": "Q30_Base_Fraction",
-            "Contamination": "Contamination_Status",
-            "Assembly length": "Total_Length",
-            "Number of contigs": "n_Contigs_Length_0",
-            "Predicted Genus": "Genus", 
-            "Median GC (%)": "GC"
+            "Assembly coverage":"Coverage_Depth",
+            "Q30":"Q30_Base_Fraction",
+            "Fraction majority species":"Contig_Fraction_majority_species",
+            "Found single copy orthologs":"Single_Copy_Orthologs",
+            "Duplicated single copy orthologs":"Duplicated_Orthologs",
+            "Assembly length":"Total_Length",
+            "Number of contigs":"n_Contigs_Length_0",
+            "Predicted Genus":"Genus",
+            "Median GC (%)":"GC"
         },
     "Campylobacter ssp":[
         {
@@ -35,9 +37,21 @@
             "category":"obligatory"
         },
         {
-            "name":"Contamination",
-            "type":"categorical",
-            "value":"False",
+            "name":"Fraction majority species",
+            "type":"threshold",
+            "value":0.90,
+            "category":"obligatory"
+        },
+        {
+            "name":"Found single copy orthologs",
+            "type":"threshold",
+            "value":0.8,
+            "category":"obligatory"
+        },
+        {
+            "name":"Duplicated single copy orthologs",
+            "type":"maximum",
+            "value":0.05,
             "category":"obligatory"
         },
         {
@@ -88,9 +102,21 @@
             "category":"obligatory"
         },
         {
-            "name":"Contamination",
-            "type":"categorical",
-            "value":"False",
+            "name":"Fraction majority species",
+            "type":"threshold",
+            "value":0.95,
+            "category":"obligatory"
+        },
+        {
+            "name":"Found single copy orthologs",
+            "type":"threshold",
+            "value":0.95,
+            "category":"obligatory"
+        },
+        {
+            "name":"Duplicated single copy orthologs",
+            "type":"maximum",
+            "value":0.05,
             "category":"obligatory"
         },
         {
@@ -141,9 +167,21 @@
             "category":"obligatory"
         },
         {
-            "name":"Contamination",
-            "type":"categorical",
-            "value":"False",
+            "name":"Fraction majority species",
+            "type":"threshold",
+            "value":0.90,
+            "category":"obligatory"
+        },
+        {
+            "name":"Found single copy orthologs",
+            "type":"threshold",
+            "value":0.95,
+            "category":"obligatory"
+        },
+        {
+            "name":"Duplicated single copy orthologs",
+            "type":"maximum",
+            "value":0.05,
             "category":"obligatory"
         },
         {
@@ -194,9 +232,21 @@
             "category":"obligatory"
         },
         {
-            "name":"Contamination",
-            "type":"categorical",
-            "value":"False",
+            "name":"Fraction majority species",
+            "type":"threshold",
+            "value":0.95,
+            "category":"obligatory"
+        },
+        {
+            "name":"Found single copy orthologs",
+            "type":"threshold",
+            "value":0.95,
+            "category":"obligatory"
+        },
+        {
+            "name":"Duplicated single copy orthologs",
+            "type":"maximum",
+            "value":0.05,
             "category":"obligatory"
         },
         {
