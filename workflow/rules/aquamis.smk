@@ -64,6 +64,6 @@ rule run_aquamis:
             --shovill_depth {params.shovill_depth} \
             --assembler "spades" \
             --threads {threads} \
-            --remove_temp \
+            --remove_temp --ephemeral \
             --fix_fails 
         """
